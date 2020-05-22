@@ -5,8 +5,7 @@ FROM python:3.7
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
     #django env vars
-ENV DJANGO_SECRET_KEY ws7$$2*^-nn)f7o4u!b83i+5zv@c^x%7q2^x-k+a=3^&ft))#q$$
-ENV DEBUG True
+#ENV DJANGO_SECRET_KEY -wxdxfjbkyq00rg2g*)%el#psremzta#cz2xt5u0q7z+161txj
 # set the workdir
 
 WORKDIR /code

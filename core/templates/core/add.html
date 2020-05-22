@@ -1,0 +1,32 @@
+{% extends 'core/_base.html' %}
+{% load static %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'core/css/add.css'%}" rel="stylesheet"">
+{% endblock %}
+
+{% block title %}
+{% endblock %}
+
+
+{% block content %}
+<div class="container">
+    
+	<div class="row">
+        <div class="col-sm-12 my-auto">
+            <div class="form_main">
+                <h4 class="heading"><strong>Quick </strong> Add <span></span></h4>
+                <div class="form">
+                    <form action="#" method="post" id="addFrm" name="addFrm">
+                        {{ form.as_p }}
+                        <input type="submit" value="submit" name="submit" class="txt2">
+                    </form>
+                </div>
+            </div>
+        </div>
+	</div>
+</div>
+{% endblock %}
+
+{% block js %}
+{% endblock %}

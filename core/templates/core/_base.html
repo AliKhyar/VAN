@@ -1,0 +1,127 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'core/css/bootstrap.css'%}" rel="stylesheet" id="bootstrap-css">
+    <!--<link rel="stylesheet" href="{% static 'core/css/index.css'%}">-->
+
+    <!--css only added for a pecific template-->
+    {% block css %}
+    {% endblock %}
+    <!--###############################-->
+
+    <link rel="stylesheet" href="{% static 'core/css/header.css'%}">
+    <script src="{% static 'core/js/social-media-fonts.js'%}"></script>
+
+    <!--title a pecific template-->
+    {% block title %}
+    {% endblock %}
+    <!--########################-->
+</head>
+
+<body>
+  <div class="container-fluid">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light mb-5">
+        <a class="navbar-brand" href="#">Navbar</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">create</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">compare</a>
+            </li>
+            
+          </ul>
+          {% comment %} <form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit" disabled>Search</button>
+          </form> {% endcomment %}
+        </div>
+      </nav>
+
+
+    </div>
+
+    {% block content %}
+    {% endblock %}
+
+    <div id="footer-area" class="container-fluid mt-5">
+
+    <!-- Footer -->
+    <section id="footer">
+      <div class="container-fluid">
+        <div class="row text-center text-xs-center text-sm-left text-md-left">
+          <div class="col-xs-12 col-sm-4 col-md-4">
+            <h5>Quick links</h5>
+            <ul class="list-unstyled quick-links">
+              <li><a href="javascript:void();"><i class="fa fa-angle-double-right"></i>Home</a></li>
+              <li><a href="javascript:void();"><i class="fa fa-angle-double-right"></i>About</a></li>
+              <li><a href="javascript:void();"><i class="fa fa-angle-double-right"></i>FAQ</a></li>
+              <li><a href="javascript:void();"><i class="fa fa-angle-double-right"></i>Get Started</a></li>
+              <li><a href="javascript:void();"><i class="fa fa-angle-double-right"></i>Videos</a></li>
+            </ul>
+          </div>
+          <div class="col-xs-12 col-sm-4 col-md-4">
+            <h5>Quick links</h5>
+            <ul class="list-unstyled quick-links">
+              <li><a href="javascript:void();"><i class="fa fa-angle-double-right"></i>Home</a></li>
+              <li><a href="javascript:void();"><i class="fa fa-angle-double-right"></i>About</a></li>
+              <li><a href="javascript:void();"><i class="fa fa-angle-double-right"></i>FAQ</a></li>
+              <li><a href="javascript:void();"><i class="fa fa-angle-double-right"></i>Get Started</a></li>
+              <li><a href="javascript:void();"><i class="fa fa-angle-double-right"></i>Videos</a></li>
+            </ul>
+          </div>
+          <div class="col-xs-12 col-sm-4 col-md-4">
+            <h5>Quick links</h5>
+            <ul class="list-unstyled quick-links">
+              <li><a href="javascript:void();"><i class="fa fa-angle-double-right"></i>Home</a></li>
+              <li><a href="javascript:void();"><i class="fa fa-angle-double-right"></i>About</a></li>
+              <li><a href="javascript:void();"><i class="fa fa-angle-double-right"></i>FAQ</a></li>
+              <li><a href="javascript:void();"><i class="fa fa-angle-double-right"></i>Get Started</a></li>
+              
+            </ul>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-12 col-sm-12 col-md-12 mt-2 mt-sm-5">
+            <ul class="list-unstyled list-inline social text-center">
+              <li class="list-inline-item"><a href="javascript:void();"><i class="fab fa-facebook"></i></a></li>
+              <li class="list-inline-item"><a href="javascript:void();"><i class="fab fa-twitter-square"></i></a></li>
+              <li class="list-inline-item"><a href="javascript:void();"><i class="fab fa-instagram"></i></i></a></li>
+              <li class="list-inline-item"><a href="javascript:void();"><i class="fab fa-google-plus"></i></a></li>
+              <li class="list-inline-item"><a href="javascript:void();" target="_blank"><i class="fa fa-envelope"></i></a></li>
+            </ul>
+          </div>
+          </hr>
+        </div>	
+        <div class="row">
+          <div class="col-xs-12 col-sm-12 col-md-12 mt-2 mt-sm-2 text-center text-white">
+            <p><u>Hatim project </p>
+            <p class="h6">&copy All right Reversed.<a class="text-green ml-2" href="#" target="_blank"> Smya dlprojet</a></p>
+          </div>
+          </hr>
+        </div>	
+      </div>
+    </section>
+    <!-- ./Footer -->
+    </div>
+    <script src="{% static 'core/js/jquery-3.4.1.min.js'%}"></script>
+    <script src="{% static 'core/js/popper.js'%}"></script>
+    <script src="{% static 'core/js/bootstrap.min.js'%}"></script>
+    {% block js %}
+    {% endblock %} 
+
+</body>
+
+</html>
