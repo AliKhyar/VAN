@@ -5,6 +5,7 @@ from django.db import models
 class Project(models.Model):
     nom = models.CharField(max_length=100)
     description = models.CharField(max_length=250)
+    capitale = models.IntegerField()
     duration = models.DurationField()
     #Duree_end = models.DateField()
     year_cash_flow = models.IntegerField()
