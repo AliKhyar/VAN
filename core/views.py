@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
 from .models import Project
@@ -43,14 +43,25 @@ def add(request):
         )
 
 def compare(request):
-    context = {}
+    projects = Project.objects.all()
+    context = {
+        'projects':projects,
+    }
+    if request.method == 'POST':
+        # extract data to pass it to url
+        project_1 = request.POST['project_1']
+        project_2 = request.POST['project_2']
+        # redirect(search_info(request,bac_plus, department, city))  #, kwargs={'request':request,'bac_plus':bac_plus, 'department':department, 'city':city})
+        return redirect(f'compare/data={project_1}vs{project_2}')
+
     return render(
         request,
         template_name='core/compare.html',
         context=context,
         )
         
-    
+def compare_projects(request, project_1, project2):
+    pass
 
 
 
