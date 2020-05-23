@@ -10,5 +10,8 @@ class Project(models.Model):
     #Duree_end = models.DateField()
     year_cash_flow = models.IntegerField()
     taux_actualisation = models.FloatField(max_length=1)
+
+    def __str__(self):
+        return self.nom
     
     
