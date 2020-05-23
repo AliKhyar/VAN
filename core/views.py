@@ -61,6 +61,11 @@ def compare(request):
         )
         
 def compare_projects(request, project_1, project2):
+    project_1 = Project.objects.filter(id=project_1)[0]
+    project2 = Project.objects.filter(id=project2)[0]
+
+    
+    ""
     pass
 
 
