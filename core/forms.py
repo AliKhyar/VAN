@@ -16,14 +16,14 @@ class AddProduct(forms.Form):
         attrs={"type":"text", "required":"", "placeholder":"Please input your project duration by days", "value":"", "name":"name", "class":"txt"}
         )
     )
-    capitale = forms.IntegerField(label='',
+    capitale = forms.FloatField(label='',
         widget=forms.TextInput(
         attrs={"type":"text", "required":"", "placeholder":"Please input your project capitale", "value":"", "name":"name", "class":"txt"}
         )
     )
-    cfy = forms.IntegerField(label='',
+    cfy = forms.CharField(label='',
         widget=forms.TextInput(
-        attrs={"type":"text", "required":"", "placeholder":"Please input your project cash flow/year", "value":"", "name":"name", "class":"txt"}
+        attrs={"type":"text", "required":"", "placeholder":"cash flow per year ex:firstYear.00, ... fifthYear.00", "value":"", "name":"name", "class":"txt"}
         )
     )
     taux = forms.FloatField(label='',

@@ -22,9 +22,9 @@ def add(request):
         form = request.POST
         name = form.get('name')
         description = form.get('description')
-        capitale = int(form.get('capitale'))
+        capitale = float(form.get('capitale'))
         duration = timedelta(days=int(form.get('duration')))
-        cfy = int(form.get('cfy'))
+        cfy = form.get('cfy')
         taux = float(form.get('taux'))
         try:
             new_project = Project(
@@ -52,13 +52,79 @@ def compare(request):
         project_1 = request.POST['project_1']
         project_2 = request.POST['project_2']
         # redirect(search_info(request,bac_plus, department, city))  #, kwargs={'request':request,'bac_plus':bac_plus, 'department':department, 'city':city})
-        return redirect(f'compare/data={project_1}vs{project_2}')
+        return redirect(f'compare/data=<project_1>vs<project_2>')
 
     return render(
         request,
         template_name='core/compare.html',
         context=context,
         )
+def npv(taux, var):
+    
+    total = 0.0
+    for i, var in enumerate(var):
+        total += var / (1 + taux)**i
+    return total
+
+def irr(var, iterations=100):
+    rate = 1.0
+    investment = var[0]
+    for i in range(1, iterations+1):
+        rate *= (1 - npv(rate, var) / investment)
+    return rate
+def payback_of_investment(investment, cashflows):
+    
+    total, years, cumulative = 0.0, 0, []
+    if not cashflows or (sum(cashflows) < investment):
+        raise Exception("insufficient cashflows")
+    for cashflow in cashflows:
+        total += cashflow
+        if total < investment:
+            years += 1
+        cumulative.append(total)
+    A = years
+    B = investment - cumulative[years-1]
+    C = cumulative[years] - cumulative[years-1]
+    return A + (B/C)
+
+def project_detail(request, project_id):
+    project = Project.objects.filter(id=project_id)[0]
+    cfy = map(float, project.year_cash_flow.strip().split(','))
+    var = [-project.capitale] + list(cfy)
+    taux = project.taux_actualisation
+    capitale = project.capitale
+
+    #################
+    ##van
+
+    #####
+
+    ##tir
+
+    #####
+    vaan=npv(1, var)
+    vaan_text = "Net present value of the investment:%3.2f"%vaan
+
+    tiir=irr(var)
+    tiir_text = "Net present value of the investment:%3.2f"%tiir
+
+    drci=payback_of_investment(capitale, cfy)
+    drci_text = "Net present value of the investment:%3.2f"%drci
+    
+    context = {
+        'project':project,
+        'cfy':cfy,
+        'van':1,
+        'tir':1,
+        'vaan_text':vaan_text, 
+        'tiir_text':tiir_text,
+        'drci_text':drci_text,
+    }
+    return render(
+        request=request,
+        template_name='core/project_detail.html',
+        context=context,
+    )
         
 def compare_projects(request, project_1, project2):
     project_1 = Project.objects.filter(id=project_1)[0]

@@ -1,0 +1,49 @@
+{% extends 'core/_base.html' %}
+{% load static %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'core/css/compare.css'%}" rel="stylesheet"">
+
+{% endblock %}
+
+{% block title %}
+{% endblock %}
+
+{% block content %}
+<h3>{{project.nom}}</h3>
+
+<h6>{{cfy}}</h6>
+<h6>{{project.capitale}}</h6>
+
+<h6>
+{% if van>0 %}
+  le projet est rentable
+{%else%%}
+  le projet n’est pas suffisamment rentable
+{% endif %}
+</h6>
+
+<h6>
+{% if tir>project.taux %}
+  projet opportun
+{%else%%}
+  projet non opportun
+{% endif %}
+</h6>
+
+<h6>
+    {{vaan_text}}
+</h6>
+
+<h6>
+    {{tiir_text}}
+</h6>
+
+<h6>
+    {{drci_text}}
+</h6>
+
+{% endblock %}
+
+{% block js %}
+{% endblock %}
