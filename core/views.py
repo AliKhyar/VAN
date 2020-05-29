@@ -76,7 +76,7 @@ def payback_of_investment(investment, cashflows):
     
     total, years, cumulative = 0.0, 0, []
     if not cashflows or (sum(cashflows) < investment):
-        raise Exception("insufficient cashflows")
+        return 0 #raise Exception("insufficient cashflows")
     for cashflow in cashflows:
         total += cashflow
         if total < investment:
@@ -93,7 +93,7 @@ def project_detail(request, project_id):
     var = [-project.capitale] + list(cfy)
     taux = project.taux_actualisation
     capitale = project.capitale
-
+    #print(project.year_cash_flow.strip().split(','))
     #################
     ##van
 
@@ -113,10 +113,10 @@ def project_detail(request, project_id):
     
     context = {
         'project':project,
-        'cfy':cfy,
         'van':1,
         'tir':1,
-        'vaan_text':vaan_text, 
+        'vaan_text':vaan_text,
+        'drci':drci,
         'tiir_text':tiir_text,
         'drci_text':drci_text,
     }

@@ -12,21 +12,25 @@
 {% block content %}
 <h3>{{project.nom}}</h3>
 
-<h6>{{cfy}}</h6>
+<h6>{{project.year_cash_flow}}</h6>
 <h6>{{project.capitale}}</h6>
-
+ 
 <h6>
-{% if van>0 %}
+
+</h6>
+
+ <h6>
+{% if van > 0 %}
   le projet est rentable
-{%else%%}
+{%else%}
   le projet n’est pas suffisamment rentable
 {% endif %}
 </h6>
 
 <h6>
-{% if tir>project.taux %}
+{% if tir > project.taux %}
   projet opportun
-{%else%%}
+{%else%}
   projet non opportun
 {% endif %}
 </h6>
@@ -40,7 +44,11 @@
 </h6>
 
 <h6>
-    {{drci_text}}
+  {% if drci == 0 %}
+  insufficient cashflows
+  {% else %}
+  {{drci_text}}
+  {% endif %}
 </h6>
 
 {% endblock %}
