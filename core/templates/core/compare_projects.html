@@ -1,0 +1,30 @@
+{% extends 'core/_base.html' %}
+{% load static %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'core/css/compare.css'%}" rel="stylesheet"">
+
+{% endblock %}
+
+{% block title %}
+{% endblock %}
+
+
+{% block content %}
+<div class="container">
+    
+    {% if vaan1 > vaan2 %}
+        {{project_1.nom}} est opprtun que {{project_2.nom}} <br>
+        with {{vaan1}} > {{vaan2}}
+    {% elif vaan1 < vaan2 %}
+        {{project_2.nom}} est opprtun que {{project_1.nom}} <br>
+        with {{vaan2}} > {{vaan1}}
+    {% else %}
+        {{project_1.nom}} et {{project_2.nom}} ont le meme van {{vaan1}}
+    {% endif %}
+
+</div>
+{% endblock %}
+
+{% block js %}
+{% endblock %}

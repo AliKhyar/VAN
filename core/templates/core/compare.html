@@ -27,7 +27,7 @@
                 <p>Vs</p>
             </div>
             <div class="col">
-            <select name="project_1" class="browser-default custom-select">
+            <select name="project_2" class="browser-default custom-select">
                 <option selected>choose project</option>
                 {% for project in projects %}
                 <option value="{{project.id}}">{{project.nom}}</option>
@@ -35,7 +35,11 @@
             </select>
             </div>
         </div>
-        <button type="button" class="btn btn-primary btn-lg btn-block">Compare</button>
+        <input
+        class="btn btn-primary btn-lg btn-block mt-4"
+        type="submit"
+        value="Submit"
+        />
     </form>
 
     <h5>

@@ -4,6 +4,7 @@ from django.views.decorators.csrf import csrf_exempt
 from .models import Project
 from datetime import datetime, timedelta
 from .forms import AddProduct
+from django.urls import reverse
 # Create your views here.
 
 def homepage(request):
@@ -42,6 +43,7 @@ def add(request):
             },
         )
 
+@csrf_exempt
 def compare(request):
     projects = Project.objects.all()
     context = {
@@ -51,8 +53,12 @@ def compare(request):
         # extract data to pass it to url
         project_1 = request.POST['project_1']
         project_2 = request.POST['project_2']
-        # redirect(search_info(request,bac_plus, department, city))  #, kwargs={'request':request,'bac_plus':bac_plus, 'department':department, 'city':city})
-        return redirect(f'compare/data=<project_1>vs<project_2>')
+        print(f'project 1 {project_1}')
+        print(f'project 2 {project_2}')
+        #return redirect('core.views.compare_projects', project_1=project_1, project_2=project_2)
+        return redirect(
+            f'search/data={project_1}+{project_2}'
+            )
 
     return render(
         request,
@@ -93,15 +99,7 @@ def project_detail(request, project_id):
     var = [-project.capitale] + list(cfy)
     taux = project.taux_actualisation
     capitale = project.capitale
-    #print(project.year_cash_flow.strip().split(','))
-    #################
-    ##van
-
-    #####
-
-    ##tir
-
-    #####
+    
     vaan=npv(1, var)
     vaan_text = "Net present value of the investment:%3.2f"%vaan
 
@@ -126,19 +124,26 @@ def project_detail(request, project_id):
         context=context,
     )
         
-def compare_projects(request, project_1, project2):
+def compare_projects(request, project_1, project_2):
     project_1 = Project.objects.filter(id=project_1)[0]
-    project2 = Project.objects.filter(id=project2)[0]
+    project_2 = Project.objects.filter(id=project_2)[0]
 
-    
-    ""
-    pass
+    cfy_1 = map(float, project_1.year_cash_flow.strip().split(','))
+    var1 = [-project_1.capitale] + list(cfy_1)
+    vaan1=npv(1, var1)
+    cfy_2 = map(float, project_2.year_cash_flow.strip().split(','))
+    var2 = [-project_2.capitale] + list(cfy_1)
+    vaan2=npv(1, var2)
 
+    context = {
+        'project_1': project_1,
+        'project_2': project_2,
+        'vaan1': vaan1,
+        'vaan2': vaan2,
+    }
+    return render(
+        request,
+        template_name='core/compare_projects.html',
+        context=context,
+        )
 
-
-# print(f"type name is {type(name)}")
-    # print(f"type description is {type(description)}")
-    # print(f"type capitale is {type(capitale)}")
-    # print(f"type duration is {type(duration)}")
-    # print(f"type cfy is {type(cfy)}")
-    # print(f"type taux is {type(taux)}")
